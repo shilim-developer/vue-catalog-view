@@ -1,0 +1,26 @@
+{
+  "name": "vue3-catalog-view",
+  "version": "1.0.1",
+  "description": "A Vue3 Library, easy to open modal and drawer",
+  "files": [
+    "lib",
+    "LICENSE",
+    "package.json",
+    "README.md",
+    "README.zh-Hans.md"
+  ],
+  "main": "./lib/vue-catalog.umd.js",
+  "module": "./lib/vue-catalog.es.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "shilim",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shilim-developer/vue-dialog-manager.git"
+  },
+  "license": "MIT"
+}

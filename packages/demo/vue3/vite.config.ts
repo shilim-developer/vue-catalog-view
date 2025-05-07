@@ -8,8 +8,12 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: "@shilim-developer/vue-catalog",
-        replacement: join(__dirname, "../../vue-catalog/src/index"),
+        find: "vue3-catalog-view",
+        replacement: join(__dirname, "../../vue-catalog-view/vue3/src/index"),
+      },
+      {
+        find: "@",
+        replacement: join(__dirname, "src"),
       },
     ],
   },

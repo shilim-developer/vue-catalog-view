@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sidebar";
 
 import { GalleryVerticalEnd } from "lucide-vue-next";
+import { useRoute } from "vue-router";
 
 const props = defineProps<SidebarProps>();
 
@@ -23,14 +24,14 @@ const data = {
   navMain: [
     {
       title: "开始",
-      url: "#",
+      url: "javascript:;",
       items: [
         {
           title: "安装",
-          url: "#",
+          url: "#/install",
         },
         {
-          title: "Project Structure",
+          title: "项目结构",
           url: "#",
         },
       ],
@@ -40,8 +41,8 @@ const data = {
       url: "#",
       items: [
         {
-          title: "Routing",
-          url: "#",
+          title: "基础用法",
+          url: "#/usage-normal",
         },
         {
           title: "Data Fetching",
@@ -158,6 +159,11 @@ const data = {
     },
   ],
 };
+
+const route = useRoute();
+function isActive(item: { url: string }) {
+  return "#" + route.path === item.url;
+}
 </script>
 
 <template>
@@ -195,7 +201,7 @@ const data = {
                 v-for="childItem in item.items"
                 :key="childItem.title"
               >
-                <SidebarMenuSubButton as-child :is-active="childItem.isActive">
+                <SidebarMenuSubButton as-child :is-active="isActive(childItem)">
                   <a :href="childItem.url">{{ childItem.title }}</a>
                 </SidebarMenuSubButton>
               </SidebarMenuSubItem>

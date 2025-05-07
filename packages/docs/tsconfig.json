@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@shilim-developer/vue-catalog": ["packages/vue-catalog/src/index.ts"],
       "@/*": ["./src/*"]
     }
   },
