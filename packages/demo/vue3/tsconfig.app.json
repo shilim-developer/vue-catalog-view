@@ -20,7 +20,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "vue3-catalog-view": ["../../vue-catalog-view/vue3/src/index.ts"],
+      "vue3-catalog-view": ["../../vue3/src/index.ts"],
       "@/*": ["./src/*"]
     }
   },

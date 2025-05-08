@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PointCatalog } from "vue3-catalog-view";
+import { PointCatalog } from "../../../../vue3/src";
 import ArticleContent from "@/components/ArticleContent.vue";
 import { ref } from "vue";
 import { VueInstance } from "@vueuse/core";

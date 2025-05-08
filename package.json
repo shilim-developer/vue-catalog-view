@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev packages/docs",
+    "docs:build": "vitepress build packages/docs",
+    "docs:preview": "vitepress preview packages/docs"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@vitejs/plugin-vue-jsx": "^4.1.2",
     "@vueuse/core": "^11.0.1",
     "markdown-it-mathjax3": "^4.3.2",
     "sass": "^1.77.8",
