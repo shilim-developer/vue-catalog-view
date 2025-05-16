@@ -8,12 +8,16 @@ export function catalogViewProps() {
       default: "default",
     },
     contentContainer: {
-      type: Object as PropType<HTMLElement | VueInstance | undefined>,
+      type: Object as PropType<HTMLElement | VueInstance>,
       default: () => document.body,
     },
     scrollContainer: {
-      type: Object as PropType<HTMLElement | VueInstance | undefined>,
+      type: Object as PropType<HTMLElement | VueInstance>,
       default: () => window,
+    },
+    selector: {
+      type: Array as PropType<string[]>,
+      default: () => ["h1", "h2", "h3", "h4", "h5", "h6"],
     },
     topDistance: {
       type: Number,
@@ -41,15 +45,3 @@ export function catalogViewProps() {
 export type CatalogViewProps = Partial<
   ExtractPropTypes<ReturnType<typeof catalogViewProps>>
 >;
-
-// export interface CatalogViewProps {
-//   type?: "default" | "line" | "point";
-//   contentContainer: HTMLElement | VueInstance | undefined;
-//   scrollContainer?: HTMLElement | Window;
-//   selector: string[];
-//   isWatch?: boolean;
-//   indent?: number;
-//   topDistance?: number;
-//   useAnchor?: boolean;
-//   ellipsis?: boolean;
-// }

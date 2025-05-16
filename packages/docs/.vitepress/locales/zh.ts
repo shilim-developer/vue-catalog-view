@@ -16,14 +16,21 @@ const config: LocaleSpecificConfig<DefaultTheme.Config> & {
     ],
 
     sidebar: [
-      // {
-      //   text: 'Examples',
-      //   items: [
-      //     { text: 'Markdown Examples', link: '/markdown-examples' },
-      //     { text: 'Runtime API Examples', link: '/api-examples' },
-      //     { text: 'Bubble', link: '/zh/bubble/index.md' },
-      //   ],
-      // },
+      {
+        text: "开始",
+        items: [
+          { text: "介绍", link: "/zh/introduction" },
+          { text: "安装", link: "/zh/install" },
+        ],
+      },
+      {
+        text: "使用",
+        items: [
+          { text: "基础使用", link: "/zh/usage/basic" },
+          { text: "主题", link: "/zh/usage/theme" },
+          { text: "自定义", link: "/zh/usage/custom" },
+        ],
+      },
     ],
 
     socialLinks: [

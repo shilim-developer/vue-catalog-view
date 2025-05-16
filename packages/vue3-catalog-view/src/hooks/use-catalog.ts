@@ -1,21 +1,33 @@
 import { ref, watch, nextTick, computed } from "vue";
-import { useMutationObserver, useScroll, VueInstance } from "@vueuse/core";
+import {
+  useMutationObserver,
+  useScroll,
+  useWindowSize,
+  VueInstance,
+} from "@vueuse/core";
 import { scrollToPromise, sleep } from "../utils";
-import { CatalogProps } from "../types/catalog-props";
+import { CatalogViewProps } from "@/types/catalog-types";
 
-export const useCatalog = (props: Required<CatalogProps>) => {
+export const useCatalog = (props: Required<CatalogViewProps>, key: string) => {
   const titles = ref<any[]>([]);
   const currentIndex = ref(0);
   const isClickAnchor = ref(false);
   const catalogRef = ref<HTMLElement>();
-  const scrollContainer = computed(() => props.scrollContainer);
+  const scrollContainer = computed(() =>
+    (props.scrollContainer as VueInstance).$el
+      ? (props.scrollContainer as VueInstance).$el
+      : (props.scrollContainer as HTMLElement)
+  );
   const { y } = useScroll(scrollContainer, {
     throttle: 100,
   });
+  const { width: windowWidth } = useWindowSize();
   const containerElement = ref<HTMLElement>(document.createElement("div"));
 
   const getArticleTitles = async () => {
     await nextTick();
+    if (scrollContainer.value.style)
+      scrollContainer.value.style.position = "relative";
     const levelMap = props.selector.reduce(
       (acc: { [key: string]: number }, cur, index) => {
         acc[cur] = index;
@@ -52,12 +64,12 @@ export const useCatalog = (props: Required<CatalogProps>) => {
 
     return titles.map((el, index) => {
       if (!el.id) {
-        el.id = `vcvTitle${index}`;
+        el.id = `vcvTitle${key}-${index}`;
       }
       return {
         title: (el as HTMLElement).innerText,
         id: el.id,
-        catalogId: `vcvAnchor${index}`,
+        catalogId: `vcvAnchor${key}-${index}`,
         level: getLevel(el),
         offsetTop: (el as HTMLElement).offsetTop,
       };
@@ -106,7 +118,7 @@ export const useCatalog = (props: Required<CatalogProps>) => {
       isClickAnchor.value = false;
       return;
     }
-    await scrollToPromise(props.scrollContainer, {
+    await scrollToPromise(scrollContainer.value, {
       top: anchor.offsetTop - props.topDistance,
       behavior: "smooth",
     });
@@ -117,14 +129,13 @@ export const useCatalog = (props: Required<CatalogProps>) => {
   watch(
     () => y.value,
     () => {
-      // console.log(y.value);
       readerScroll(y.value);
     }
   );
 
   let stopMutationObserver: () => void;
   watch(
-    () => [props.contentContainer, props.isWatch],
+    () => [props.contentContainer, props.isWatch, windowWidth.value],
     async (val) => {
       console.log("val:", val);
       const [contentContainer, isWatch] = val;
@@ -144,6 +155,7 @@ export const useCatalog = (props: Required<CatalogProps>) => {
             {
               childList: true,
               subtree: true,
+              characterData: true,
             }
           );
           stopMutationObserver = stop;
@@ -151,6 +163,7 @@ export const useCatalog = (props: Required<CatalogProps>) => {
           if (stopMutationObserver) stopMutationObserver();
         }
         titles.value = await getArticleTitles();
+        console.log("titles.value:", titles.value);
       }
     },
     {

@@ -1,5 +1,5 @@
-import { default as LineCatalog } from './components/LineCatalog.vue';
-import { default as PointCatalog } from './components/PointCatalog.vue';
-import { default as NormalCatalog } from './components/NormalCatalog.vue';
+import { CatalogViewProps, catalogViewProps } from './types/catalog-types';
+import { default as CatalogView } from './components/CatalogView.vue';
 
-export { LineCatalog, PointCatalog, NormalCatalog };
+export { CatalogView, catalogViewProps };
+export type { CatalogViewProps };

@@ -2,9 +2,10 @@
 import { useData } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import { nextTick, provide } from "vue";
+import { useRoute } from "vitepress";
+import FrameDefaultLayout from "./FrameDefaultLayout.vue";
 
 const { isDark } = useData();
-
 function enableTransitions() {
   return (
     "startViewTransition" in document &&
@@ -40,10 +41,13 @@ provide("toggle-appearance", async ({ clientX: x, clientY: y }: MouseEvent) => {
     }
   );
 });
+
+const route = useRoute();
 </script>
 
 <template>
-  <DefaultTheme.Layout />
+  <FrameDefaultLayout v-if="route.path.startsWith('/frames/default')" />
+  <DefaultTheme.Layout v-else />
 </template>
 
 <style>
@@ -69,5 +73,9 @@ provide("toggle-appearance", async ({ clientX: x, clientY: y }: MouseEvent) => {
 
 .VPSwitchAppearance .check {
   transform: none !important;
+}
+
+.VPDoc.has-aside .content-container {
+  max-width: 100%;
 }
 </style>

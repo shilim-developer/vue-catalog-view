@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NormalCatalog } from "../../../../vue3/src";
+import { CatalogView } from "vue3-catalog-view";
 import ArticleContent from "@/components/ArticleContent.vue";
 import { ref } from "vue";
 import { VueInstance } from "@vueuse/core";
@@ -9,7 +9,7 @@ const articleRef = ref<HTMLElement | VueInstance | undefined>(undefined);
 
 <template>
   <article-content ref="articleRef" class="article"></article-content>
-  <normal-catalog
+  <catalog-view
     class="catalog"
     type="point"
     :content-container="articleRef"
@@ -18,7 +18,7 @@ const articleRef = ref<HTMLElement | VueInstance | undefined>(undefined);
     :top-distance="20"
     :is-watch="true"
   >
-  </normal-catalog>
+  </catalog-view>
 </template>
 
 <style scoped>

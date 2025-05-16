@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NormalCatalog } from "../../../../vue3/src";
+import { CatalogView } from "vue3-catalog-view";
 import ArticleContent from "@/components/ArticleContent.vue";
 import { ref } from "vue";
 import { VueInstance } from "@vueuse/core";
@@ -13,7 +13,7 @@ const articleContainerRef = ref<HTMLElement | undefined>(undefined);
     <div class="article-content" ref="articleContainerRef">
       <article-content ref="articleRef" class="article"></article-content>
     </div>
-    <normal-catalog
+    <catalog-view
       class="catalog"
       :content-container="articleRef"
       :scroll-container="articleContainerRef"
@@ -31,7 +31,7 @@ const articleContainerRef = ref<HTMLElement | undefined>(undefined);
           {{ anchor.title }}
         </div>
       </template>
-    </normal-catalog>
+    </catalog-view>
   </div>
 </template>
 

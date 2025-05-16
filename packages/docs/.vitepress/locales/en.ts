@@ -19,14 +19,14 @@ const config: LocaleSpecificConfig<DefaultTheme.Config> & {
     ],
 
     sidebar: [
-      // {
-      //   text: 'Examples',
-      //   items: [
-      //     { text: 'Markdown Examples', link: '/markdown-examples' },
-      //     { text: 'Runtime API Examples', link: '/api-examples' },
-      //     { text: 'Bubble', link: '/bubble/index.md' },
-      //   ],
-      // },
+      {
+        text: "Examples",
+        items: [
+          { text: "Markdown Examples", link: "/introduction" },
+          { text: "Runtime API Examples", link: "/api-examples" },
+          { text: "Bubble", link: "/bubble/index.md" },
+        ],
+      },
     ],
 
     socialLinks: [
