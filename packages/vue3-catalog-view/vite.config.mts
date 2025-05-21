@@ -22,6 +22,14 @@ export default defineConfig({
         globals: {
           vue: "Vue",
         },
+        intro: (chunk) => {
+          if (chunk.fileName === "vue3-catalog-view.umd.js") {
+            return `require("./style.css");`;
+          } else if (chunk.fileName === "vue3-catalog-view.es.js") {
+            return `import "./style.css";`;
+          }
+          return "";
+        },
       },
     },
     lib: {

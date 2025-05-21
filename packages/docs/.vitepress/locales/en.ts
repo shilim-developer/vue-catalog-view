@@ -9,22 +9,20 @@ const config: LocaleSpecificConfig<DefaultTheme.Config> & {
   title: "vue3-catalog-view",
   description: "catalog view auto product for vue3",
   themeConfig: {
-    outline: {
-      level: [1, 3],
-    },
-    // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: "Home", link: "/" },
-      // { text: "Examples", link: "/markdown-examples" },
-    ],
-
     sidebar: [
       {
-        text: "Examples",
+        text: "Get Started",
         items: [
-          { text: "Markdown Examples", link: "/introduction" },
-          { text: "Runtime API Examples", link: "/api-examples" },
-          { text: "Bubble", link: "/bubble/index.md" },
+          { text: "introduction", link: "/introduction" },
+          { text: "install", link: "/install" },
+        ],
+      },
+      {
+        text: "Usage",
+        items: [
+          { text: "basic", link: "/usage/basic" },
+          { text: "theme", link: "/usage/theme" },
+          { text: "customize", link: "/usage/customize" },
         ],
       },
     ],

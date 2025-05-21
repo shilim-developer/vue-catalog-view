@@ -6,6 +6,7 @@ import { VueInstance } from "@vueuse/core";
 
 const articleRef = ref<HTMLElement | VueInstance | undefined>(undefined);
 const articleContainerRef = ref<HTMLElement | undefined>(undefined);
+console.log(window.location.href);
 </script>
 
 <template>
@@ -15,6 +16,7 @@ const articleContainerRef = ref<HTMLElement | undefined>(undefined);
     </div>
     <catalog-view
       class="catalog"
+      key="basic"
       :content-container="articleRef"
       :scroll-container="articleContainerRef"
       :selector="['h1', 'h2', 'h3', 'h4']"

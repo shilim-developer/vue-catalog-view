@@ -29,11 +29,11 @@ export function catalogViewProps() {
     },
     useAnchor: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     isWatch: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     ellipsis: {
       type: Boolean,

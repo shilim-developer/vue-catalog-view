@@ -2,54 +2,22 @@
 outline: deep
 ---
 
-# Runtime API Examples
+# 安装
 
-This page demonstrates usage of some of the runtime APIs provided by VitePress.
+## npm
 
-The main `useData()` API can be used to access site, theme, and page data for the current page. It works in both `.md` and `.vue` files:
-
-```md
-<script setup>
-import { useData } from 'vitepress'
-
-const { theme, page, frontmatter } = useData()
-</script>
-
-## Results
-
-### Theme Data
-
-<pre>{{ theme }}</pre>
-
-### Page Data
-
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-
-<pre>{{ frontmatter }}</pre>
+```
+npm install vue3-catalog-view
 ```
 
-<script setup>
-import { useData } from 'vitepress'
+## yarn
 
-const { site, theme, page, frontmatter } = useData()
-</script>
+```
+yarn add vue3-catalog-view
+```
 
-## Results
+## pnpm
 
-### Theme Data
-
-<pre>{{ theme }}</pre>
-
-### Page Data
-
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-
-<pre>{{ frontmatter }}</pre>
-
-## More
-
-Check out the documentation for the [full list of runtime APIs](https://vitepress.dev/reference/runtime-api#usedata).
+```
+pnpm add vue3-catalog-view
+```

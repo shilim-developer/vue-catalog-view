@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { CatalogView } from "vue3-catalog-view";
-import ArticleContent from "@/components/ArticleContent.vue";
+import ArticleContent from "./components/ArticleContent.vue";
 import { ref } from "vue";
 import { VueInstance } from "@vueuse/core";
 
@@ -10,7 +10,7 @@ const articleRef = ref<HTMLElement | VueInstance | undefined>(undefined);
 <template>
   <article-content ref="articleRef" class="article"></article-content>
   <catalog-view
-    type="point"
+    key="window"
     class="catalog"
     :content-container="articleRef"
     :selector="['h1', 'h2', 'h3', 'h4']"

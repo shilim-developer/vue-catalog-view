@@ -31,6 +31,10 @@ export default defineConfig({
     config(md) {
       md.use(vitepressDemoPlugin, {
         demoDir: resolve(__dirname, "../../vue3-catalog-view/src/demo"),
+        locale: {
+          zh: "zh-CN",
+          en: "en-US",
+        },
       });
     },
   },

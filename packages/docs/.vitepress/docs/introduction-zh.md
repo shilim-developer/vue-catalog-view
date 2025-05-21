@@ -2,54 +2,19 @@
 outline: deep
 ---
 
-# Runtime API Examples
+# 介绍
 
-This page demonstrates usage of some of the runtime APIs provided by VitePress.
+这是一个使用 Vue3 开发的文章标题导航组件
 
-The main `useData()` API can be used to access site, theme, and page data for the current page. It works in both `.md` and `.vue` files:
+可以自动检测文章标题,生成目录导航
 
-```md
-<script setup>
-import { useData } from 'vitepress'
+- 支持通过标题便签匹配标题，支持 class
+- 支持自动检测文章内容变化，自动更新目录导航
+- 内置两种简单的主题
+- 支持插槽自定义样式
 
-const { theme, page, frontmatter } = useData()
-</script>
+<br/>
 
-## Results
+# 演示
 
-### Theme Data
-
-<pre>{{ theme }}</pre>
-
-### Page Data
-
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-
-<pre>{{ frontmatter }}</pre>
-```
-
-<script setup>
-import { useData } from 'vitepress'
-
-const { site, theme, page, frontmatter } = useData()
-</script>
-
-## Results
-
-### Theme Data
-
-<pre>{{ theme }}</pre>
-
-### Page Data
-
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-
-<pre>{{ frontmatter }}</pre>
-
-## More
-
-Check out the documentation for the [full list of runtime APIs](https://vitepress.dev/reference/runtime-api#usedata).
+![introduction](/img/introduction-zh.png)

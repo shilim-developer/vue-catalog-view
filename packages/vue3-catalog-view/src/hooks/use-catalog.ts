@@ -8,7 +8,11 @@ import {
 import { scrollToPromise, sleep } from "../utils";
 import { CatalogViewProps } from "@/types/catalog-types";
 
-export const useCatalog = (props: Required<CatalogViewProps>, key: string) => {
+export const useCatalog = (
+  props: Required<CatalogViewProps>,
+  key: string = ""
+) => {
+  const keyStr = key ? `-${key}-` : key;
   const titles = ref<any[]>([]);
   const currentIndex = ref(0);
   const isClickAnchor = ref(false);
@@ -64,12 +68,12 @@ export const useCatalog = (props: Required<CatalogViewProps>, key: string) => {
 
     return titles.map((el, index) => {
       if (!el.id) {
-        el.id = `vcvTitle${key}-${index}`;
+        el.id = `vcvTitle${keyStr}${index}`;
       }
       return {
         title: (el as HTMLElement).innerText,
         id: el.id,
-        catalogId: `vcvAnchor${key}-${index}`,
+        catalogId: `vcvAnchor${keyStr}${index}`,
         level: getLevel(el),
         offsetTop: (el as HTMLElement).offsetTop,
       };
@@ -82,7 +86,7 @@ export const useCatalog = (props: Required<CatalogViewProps>, key: string) => {
     for (let index = 0; index < titles.value.length; index++) {
       const offsetTop = titles.value[index].offsetTop;
       const top = offsetTop - scrollTop - props.topDistance;
-      console.log("top:", top, index);
+      // console.log("top:", top, index);
       if (top > 0 && index - 1 >= 0) {
         currentIndex.value = index - 1;
         updateActiveClass();
@@ -96,7 +100,7 @@ export const useCatalog = (props: Required<CatalogViewProps>, key: string) => {
   // 添加用于更新 active 类的函数
   const updateActiveClass = () => {
     const currentCatalog = document.querySelector(
-      `#vcvAnchor${currentIndex.value}`
+      `#vcvAnchor${keyStr}${currentIndex.value}`
     );
     const viewPortHeight = catalogRef.value?.clientHeight || 0;
     const offsetTop = (currentCatalog as HTMLElement).offsetTop;
@@ -137,7 +141,6 @@ export const useCatalog = (props: Required<CatalogViewProps>, key: string) => {
   watch(
     () => [props.contentContainer, props.isWatch, windowWidth.value],
     async (val) => {
-      console.log("val:", val);
       const [contentContainer, isWatch] = val;
       if (contentContainer) {
         if ((contentContainer as VueInstance).$el) {
@@ -163,7 +166,7 @@ export const useCatalog = (props: Required<CatalogViewProps>, key: string) => {
           if (stopMutationObserver) stopMutationObserver();
         }
         titles.value = await getArticleTitles();
-        console.log("titles.value:", titles.value);
+        // console.log("titles.value:", titles.value);
       }
     },
     {

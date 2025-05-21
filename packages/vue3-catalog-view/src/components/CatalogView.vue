@@ -5,7 +5,7 @@
       <div
         v-for="(anchor, index) in titles"
         :key="anchor.title"
-        :id="`vcvAnchor${index}`"
+        :id="anchor.catalogId"
         @click="handleAnchorClick(anchor, index)"
         class="vcv-catalog-item-wrapper"
         :class="currentIndex === index ? 'active' : ''"
@@ -33,12 +33,9 @@
 import { Anchor } from "@/types/anchor";
 import { useCatalog } from "@/hooks/use-catalog";
 import { catalogViewProps } from "@/types/catalog-types";
-import { getCurrentInstance, useAttrs } from "vue";
+import { getCurrentInstance } from "vue";
 
 const props = defineProps(catalogViewProps());
-const attrs = useAttrs();
-
-console.log("props:", props, attrs.key);
 
 defineSlots<{
   default?: (params: { active: boolean; anchor: Anchor }) => void;
@@ -46,7 +43,7 @@ defineSlots<{
 
 const { titles, currentIndex, catalogRef, handleAnchorClick } = useCatalog(
   props,
-  getCurrentInstance()?.vnode?.key as string
+  (getCurrentInstance()?.vnode?.key as string) || ""
 );
 </script>
 <style lang="scss" scoped>
@@ -103,10 +100,10 @@ const { titles, currentIndex, catalogRef, handleAnchorClick } = useCatalog(
       }
 
       &.active {
-        color: rgba(30, 97, 243, 0.836);
+        color: #1e61f3;
       }
       &:hover {
-        color: rgba(30, 97, 243, 0.836);
+        color: #1e61f3;
       }
       a {
         display: block;

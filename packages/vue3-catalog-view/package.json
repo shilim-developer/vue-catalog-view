@@ -1,6 +1,6 @@
 {
   "name": "vue3-catalog-view",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "A Vue3 Library, easy to open modal and drawer",
   "files": [
     "lib",

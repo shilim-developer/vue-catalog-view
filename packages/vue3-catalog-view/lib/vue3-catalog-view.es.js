@@ -1,3 +1,4 @@
+import "./style.css";
 import { unref as N, onMounted as U, nextTick as Z, getCurrentScope as oe, onScopeDispose as re, isRef as le, getCurrentInstance as B, ref as _, computed as H, reactive as Q, watch as R, watchEffect as se, defineComponent as ie, useAttrs as ce, createElementBlock as D, openBlock as I, normalizeClass as V, createCommentVNode as ae, createElementVNode as X, Fragment as ue, renderList as fe, renderSlot as de, mergeProps as ve, normalizeStyle as pe, toDisplayString as J } from "vue";
 function z(e) {
   return oe() ? (re(e), !0) : !1;
@@ -477,8 +478,8 @@ const Ie = {
   for (const [o, r] of n)
     t[o] = r;
   return t;
-}, xe = /* @__PURE__ */ He(Ne, [["__scopeId", "data-v-cc6f8f2d"]]);
+}, Ve = /* @__PURE__ */ He(Ne, [["__scopeId", "data-v-cc6f8f2d"]]);
 export {
-  xe as CatalogView,
+  Ve as CatalogView,
   De as catalogViewProps
 };

@@ -2,54 +2,19 @@
 outline: deep
 ---
 
-# Runtime API Examples
+# Introduction
 
-This page demonstrates usage of some of the runtime APIs provided by VitePress.
+This is an article title navigation component developed using Vue3
 
-The main `useData()` API can be used to access site, theme, and page data for the current page. It works in both `.md` and `.vue` files:
+Automatically detect article titles and generate directory navigation
 
-```md
-<script setup>
-import { useData } from 'vitepress'
+- Supports matching titles by title notes and class
+- Support automatic detection of article content changes and automatic update of directory navigation
+- Two simple themes built in
+- Support slot custom style
 
-const { theme, page, frontmatter } = useData()
-</script>
+<br/>
 
-## Results
+# Demo Image
 
-### Theme Data
-
-<pre>{{ theme }}</pre>
-
-### Page Data
-
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-
-<pre>{{ frontmatter }}</pre>
-```
-
-<script setup>
-import { useData } from 'vitepress'
-
-const { site, theme, page, frontmatter } = useData()
-</script>
-
-## Results
-
-### Theme Data
-
-<pre>{{ theme }}</pre>
-
-### Page Data
-
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-
-<pre>{{ frontmatter }}</pre>
-
-## More
-
-Check out the documentation for the [full list of runtime APIs](https://vitepress.dev/reference/runtime-api#usedata).
+![introduction](/img/introduction.png)

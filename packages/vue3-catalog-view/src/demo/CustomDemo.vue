@@ -50,10 +50,10 @@ const articleContainerRef = ref<HTMLElement | undefined>(undefined);
   cursor: pointer;
   &.active {
     background: rgba(0, 0, 0, 0.1);
-    color: rgba(30, 97, 243, 0.836);
+    color: rgba(30, 97, 243, 0.8);
   }
   &:hover {
-    color: rgba(30, 97, 243, 0.836);
+    color: rgba(30, 97, 243, 0.8);
   }
 }
 

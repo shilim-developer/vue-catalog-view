@@ -1,43 +1,43 @@
 {
-  "hash": "1d4f000f",
+  "hash": "6021d853",
   "configHash": "2d8ab583",
-  "lockfileHash": "c070bbeb",
-  "browserHash": "8484acb4",
+  "lockfileHash": "93d4cd4d",
+  "browserHash": "d65cc5d9",
   "optimized": {
     "vue": {
       "src": "../../../../../node_modules/.pnpm/vue@3.5.14_typescript@5.8.3/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "c78c844e",
+      "fileHash": "cbfe9d9a",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../../node_modules/.pnpm/@vue+devtools-api@7.7.6/node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "ee1220fc",
+      "fileHash": "9588af87",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../../../node_modules/.pnpm/@vueuse+core@12.8.2_typescript@5.8.3/node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "7ac0b5f5",
+      "fileHash": "9f57cd16",
       "needsInterop": false
     },
     "@whyframe/core/utils": {
       "src": "../../../../../node_modules/.pnpm/@whyframe+core@0.1.13_vite@5.4.19_@types+node@20.17.47_sass@1.89.0_terser@5.39.2__webpack@5.99.8/node_modules/@whyframe/core/src/utils.js",
       "file": "@whyframe_core_utils.js",
-      "fileHash": "873357a2",
+      "fileHash": "8980dcb9",
       "needsInterop": false
     },
     "vitepress-demo-plugin": {
       "src": "../../../../../node_modules/.pnpm/vitepress-demo-plugin@1.4.2_shiki@2.5.0_vitepress@1.6.3_@algolia+client-search@5.25.0_@types+_pt45ckvjhylb5ndakzl4ocg3ri/node_modules/vitepress-demo-plugin/dist/index.js",
       "file": "vitepress-demo-plugin.js",
-      "fileHash": "cc514792",
+      "fileHash": "83422615",
       "needsInterop": false
     },
     "@vueuse/core": {
       "src": "../../../../../node_modules/.pnpm/@vueuse+core@11.3.0_vue@3.5.14_typescript@5.8.3_/node_modules/@vueuse/core/index.mjs",
       "file": "@vueuse_core.js",
-      "fileHash": "4c460b88",
+      "fileHash": "3874dd29",
       "needsInterop": false
     }
   },

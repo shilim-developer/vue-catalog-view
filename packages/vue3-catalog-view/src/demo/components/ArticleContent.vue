@@ -1,7 +1,11 @@
 <template>
   <article>
     <div id="article_content" class="article_content clearfix">
-      <div id="content_views" class="markdown_views prism-atom-one-dark">
+      <div
+        id="content_views"
+        class="markdown_views prism-atom-one-dark"
+        v-if="isZh"
+      >
         <h2>一、Typescript简介</h2>
         <h3>1.1 概述</h3>
         <p>
@@ -491,8 +495,621 @@
           有两个“顶层类型”（any和unknown），但是“底层类型”只有never唯一一个
         </p>
       </div>
-      <div><div></div></div>
+      <div id="content_views" class="markdown_views prism-atom-one-dark" v-else>
+        <h2>1. Introduction to Typescript</h2>
+        <h3>1.1 Overview</h3>
+        <p>
+          TypeScript (TS for short) is a programming language developed by
+          Microsoft based on
+          <span class="words-blog hl-git-1">JavaScript (JS for short).</span>
+        </p>
+        <p>
+          Its purpose is not to create a new language, but to enhance the
+          functionality of JavaScript to make it more suitable for
+          enterprise-level projects involving multiple people.
+        </p>
+        <p>
+          TypeScript can be considered a superset of JavaScript, that is, it
+          inherits all of the latter's syntax, and all JavaScript scripts can be
+          treated as TypeScript scripts (but errors may be reported). In
+          addition, it adds some of its own syntax.
+        </p>
+        <p>
+          The main thing TypeScript adds to JavaScript is a separate type
+          system.
+        </p>
+        <h3>1.2 Dynamic typing and static typing</h3>
+        <p>
+          As mentioned earlier, the main function of TypeScript is to add a type
+          system to JavaScript. As you may know, the JavaScript language itself
+          has its own type system, such as the number 123 and the string Hello.
+        </p>
+        <p>
+          However, JavaScript's type system is very weak, and without
+          restrictions, operators can accept values
+          &ZeroWidthSpace;&ZeroWidthSpace;of various types. Syntactically,
+          JavaScript is a dynamically typed language.
+        </p>
+        <p>Please see the JavaScript code below.</p>
+        <p>// Example 1 <br />let x = 1; <br />x = 'hello';</p>
+        <p>
+          // Example 2 <br />let y = { foo: 1 };<br />delete y.foo; <br />y.bar
+          = 2; <br />In the example above, when the variable x is declared, the
+          value type is a number, but it can be changed to a string later.
+          Therefore, it is impossible to know the type of the variable in
+          advance, that is, the type of the variable is dynamic.
+        </p>
+        <p>
+          In the second example above, the variable y is an object with an
+          attribute foo, but this attribute can be deleted, and other attributes
+          can be added. Therefore, what attributes an object has and whether
+          this attribute still exists is also dynamic and cannot be known in
+          advance.
+        </p>
+        <p>
+          It is precisely because of these dynamic changes that JavaScript's
+          type system is dynamic and not very restrictive, which is very
+          unfavorable for discovering code errors in advance.
+        </p>
+        <p>
+          TypeScript introduces a stronger and stricter type system and is a
+          statically typed language.
+        </p>
+        <p>The above code will report an error in TypeScript.</p>
+        <p>// Example 1 <br />let x = 1; <br />x = 'hello'; // Error</p>
+        <p>
+          // Example 2 <br />let y = { foo: 1 }; <br />delete y.foo; // Error
+          <br />y.bar = 2; // Error <br />In the above examples, the error in
+          Example 1 is because when assigning a value to a variable, TypeScript
+          has already inferred the type, and it is not allowed to assign values
+          &ZeroWidthSpace;&ZeroWidthSpace;of other types later, that is, the
+          type of the variable is static. The error in Example 2 is because the
+          properties of the object are also static, and arbitrary additions and
+          deletions are not allowed.
+        </p>
+        <p>
+          The role of TypeScript is to introduce this static type feature to
+          JavaScript.
+        </p>
+        <h3>
+          <a name="t4"></a><a id="13__48"></a>1.3 Advantages of static typing
+        </h3>
+        <p>
+          Static typing has many benefits, and this is what TypeScript aims to
+          achieve.
+        </p>
+        <p>(1) It is conducive to static analysis of code.</p>
+        <p>
+          With static typing, you can determine the type of a variable without
+          running the code, and thus infer whether the code has errors. This is
+          called static analysis of the code.
+        </p>
+        <p>
+          This is very important for large projects. Simply running static
+          checks during the development phase can reveal many problems, avoid
+          delivering problematic code, and greatly reduce online risks.
+        </p>
+        <p>(2) It helps to find errors.</p>
+        <p>
+          Since every value, every variable, and every operator has strict type
+          constraints, TypeScript can easily detect spelling errors, semantic
+          errors, and method call errors, saving programmers time.
+        </p>
+        <p>
+          let obj = { message: '' }; <br /><span
+            class="words-blog hl-git-1"
+            data-tit="console"
+            data-pretit="console"
+            >console</span
+          >
+          .log(obj.messege); // Error <br />In the above example, if message is
+          misspelled as messege, TypeScript will report an error, indicating
+          that the property has not been defined. JavaScript will not report an
+          error in this case.
+        </p>
+        <p>
+          const a = 0; <br />const b = true; <br />const result = a + b; //
+          Error <br />The above example is legal JavaScript code, but it does
+          not make sense. You should not add the numeric value a to the Boolean
+          value b. TypeScript will directly report an error, indicating that the
+          operator + cannot be used to add numeric values
+          &ZeroWidthSpace;&ZeroWidthSpace;and Boolean values.
+        </p>
+        <p>
+          function hello() {<br />
+          return ‘hello world’;<br />
+          }
+        </p>
+        <p>
+          hello().find('hello'); // Error <br />In the above example, hello()
+          returns a string. TypeScript finds that the string does not have a
+          find() method, so it reports an error. If it is JavaScript, an error
+          will only be reported at the runtime stage.
+        </p>
+        <p>
+          (3) Better IDE support, including syntax hints and auto-completion.
+        </p>
+        <p>
+          IDE (Integrated Development Environment, such as
+          <span
+            class="words-blog hl-git-1"
+            data-tit="VSCode"
+            data-pretit="vscode"
+            >VSCode</span
+          >
+          ) generally uses type information to provide syntax prompts (the
+          editor automatically prompts function usage, parameters, etc.) and
+          auto-completion functions (type only part of the variable name or
+          function name, and the editor completes the rest).
+        </p>
+        <p>(4) Code documentation is provided.</p>
+        <p>
+          Type information can partially replace code documentation and explain
+          how the code should be used. Skilled developers can often roughly
+          infer the purpose of the code by just looking at the type. With the
+          help of type information, many tools can generate documentation
+          directly.
+        </p>
+        <p>（5）It helps in code refactoring.</p>
+        <p>
+          Modifying other people's JavaScript code is often very painful, and
+          the larger the project, the more painful it is, because you are not
+          sure whether the modification will affect other parts of the code.
+        </p>
+        <p>
+          Type information greatly reduces the cost of refactoring. Generally
+          speaking, as long as the parameters and return values
+          &ZeroWidthSpace;&ZeroWidthSpace;of a function or object remain
+          unchanged, it can be basically determined that the refactored code
+          will run normally. If there are also supporting unit tests, you can
+          refactor with confidence. The larger the project, the more people work
+          together, the more help type information can provide.
+        </p>
+        <p>
+          In summary, TypeScript helps improve code quality, ensure code
+          security, and is more suitable for large enterprise projects. This is
+          why a large number of JavaScript projects are converted to TypeScript.
+        </p>
+        <h3>
+          <a name="t5"></a><a id="14__93"></a>1.4 Disadvantages of static typing
+        </h3>
+        <p>Static typing also has some disadvantages.</p>
+        <p>(1) Loss of the flexibility of dynamically typed code.</p>
+        <p>
+          Dynamic typing has very high flexibility and gives programmers a lot
+          of freedom, but static typing deprives programmers of this
+          flexibility.
+        </p>
+        <p>(2) Increased programming workload.</p>
+        <p>
+          With types, programmers not only need to write functions, but also
+          need to write type declarations to ensure that the types are correct.
+          This increases the workload and sometimes significantly prolongs the
+          development time of the project.
+        </p>
+        <p>(3) Higher learning costs.</p>
+        <p>
+          Type systems are usually more complex, with more things to learn,
+          requiring developers to pay a higher learning cost.
+        </p>
+        <p>(4) An independent compilation step was introduced.</p>
+        <p>
+          Native JavaScript code can be run directly in the JavaScript engine.
+          After adding the type system, there is an additional separate
+          compilation step to check whether the type is correct and convert the
+          TypeScript code into JavaScript code so that it can be run.
+        </p>
+        <p>(5) Compatibility issues.</p>
+        <p>
+          TypeScript relies on the JavaScript ecosystem and requires the use of
+          many external modules. However, in the past, most JavaScript projects
+          did not adapt to TypeScript. Although you can do the adaptation
+          yourself, there will inevitably be some compatibility issues when
+          using it.
+        </p>
+        <p>
+          Overall, these shortcomings make TypeScript not necessarily suitable
+          for small, short-term personal projects.
+        </p>
+        <h2><a name="t6"></a><a id="_118"></a>2. Basic Usage</h2>
+        <h3><a name="t7"></a><a id="21__119"></a>2.1 Type Declaration</h3>
+        <p>
+          The most obvious feature of TypeScript code is that it adds type
+          declarations to JavaScript variables.
+        </p>
+        <p>
+          let foo:string; <br />In the above example, a colon is used after the
+          variable foo to declare its type as string.
+        </p>
+        <p>
+          The way to write a type declaration is to add a colon + type after the
+          identifier. The same is true for function parameters and return
+          values.
+        </p>
+        <p>
+          function toString(num:number):string { <br />return String(num);
+          <br />} <br />In the above example, the type of the parameter num of
+          the toString() function is number. After the parentheses of the
+          parameter list, the return value type is declared to be string. For
+          more details, see the chapter "Functions".
+        </p>
+        <p>
+          Note that the value of the variable should be consistent with the
+          declared type. If it is inconsistent, TypeScript will report an error.
+        </p>
+        <p>
+          // Error <br />let foo:string = 123; <br />In the above example, the
+          type of the variable foo is string, but the value 123 is assigned, and
+          TypeScript reports an error.
+        </p>
+        <p>
+          In addition, TypeScript stipulates that variables can only be used
+          after being assigned, otherwise an error will be reported.
+        </p>
+        <p>
+          let x:number; <br />console.log(x) // Error <br />In the above
+          example, the variable x is read without being assigned a value,
+          resulting in an error. JavaScript allows this behavior and will not
+          report an error. Variables that are not assigned a value will return
+          undefined.
+        </p>
+        <h3><a name="t8"></a><a id="22__144"></a>2.2 Type Inference</h3>
+        <p>
+          Type declarations are not required, and TypeScript will infer the
+          types if they are missing.
+        </p>
+        <p>
+          let foo = 123; <br />In the above example, the variable foo has no
+          type declaration, so TypeScript infers its type. Since it is assigned
+          a numeric value, TypeScript infers its type as number.
+        </p>
+        <p>
+          Later, if the variable foo is changed to a value of another type that
+          is inconsistent with the inferred type, TypeScript will report an
+          error.
+        </p>
+        <p>
+          let foo = 123; <br />foo = 'hello'; // error <br />In the above
+          example, the type of the variable foo is inferred to be number, and
+          then assigned to a string, so TypeScript reports an error.
+        </p>
+        <p>TypeScript can also infer the return value of a function.</p>
+        <p>
+          function toString(num:number) { <br />return String(num); <br />}
+          <br />In the above example, the function toString() does not declare
+          the type of the return value, but TypeScript infers that the return
+          value is a string. Because of TypeScript's type inference, the type of
+          the function return value is usually omitted.
+        </p>
+        <p>
+          From this, we can see that the design concept of TypeScript is that
+          type declarations are optional. You can add them or not. Even without
+          type declarations, it is still valid TypeScript code, but there is no
+          guarantee that TypeScript will correctly infer the type. For this
+          reason, all JavaScript code is legal TypeScript code.
+        </p>
+        <p>
+          This design also has the advantage that when you convert a previous
+          JavaScript project to a TypeScript project, you can gradually add
+          types to the old code, and even if some code is not added, it will not
+          fail to run.
+        </p>
+        <h3>
+          <a name="t9"></a><a id="23_TypeScript__169"></a>2.3 TypeScript
+          Compilation
+        </h3>
+        <p>
+          JavaScript runtimes (browsers and
+          <span
+            class="words-blog hl-git-1"
+            data-tit="Node.js"
+            data-pretit="node.js"
+            >Node.js</span
+          >
+          ) do not recognize TypeScript code. Therefore, in order to run a
+          TypeScript project, it must first be converted to JavaScript code.
+          This code conversion process is called "compile".
+        </p>
+        <p>
+          TypeScript does not officially provide a runtime environment, but only
+          provides a compiler. During compilation, type declarations and
+          type-related codes will be deleted, leaving only executable JavaScript
+          code, and the JavaScript runtime results will not be changed.
+        </p>
+        <p>
+          Therefore, TypeScript's type checking is only compile-time type
+          checking, not runtime type checking. Once the code is compiled into
+          JavaScript, the runtime no longer checks the type.
+        </p>
+        <h3><a name="t10"></a><a id="24_tsc__178"></a>2.4 tsc compiler</h3>
+        <p>
+          The official compiler provided by TypeScript is called tsc, which can
+          compile TypeScript scripts into JavaScript scripts. If you want to
+          compile TypeScript code on your machine, you must install tsc.
+        </p>
+        <p>
+          According to convention, TypeScript script files use the .ts suffix,
+          and JavaScript script files use the .js suffix. The function of tsc is
+          to convert .ts scripts into .js scripts.
+        </p>
+        <h3>
+          <a name="t11"></a><a id="25_tsconfigjson_185"></a>2.5 tsconfig.json
+        </h3>
+        <p>
+          TypeScript allows you to write tsc compilation parameters in the
+          configuration file tsconfig.json. As long as this file exists in the
+          current directory, tsc will automatically read it, so you don't need
+          to write parameters when running.
+        </p>
+        <p>
+          如：<br />
+          {<br />
+          “files”: [“file1.ts”, “file2.ts”],<br />
+          “compilerOptions”: {<br />
+          “outFile”: “dist/app.js”<br />
+          }<br />
+          }
+        </p>
+        <h2><a name="t12"></a><a id="_any_196"></a>3. Any type</h2>
+        <h3><a name="t13"></a><a id="31__197"></a>3.1 Basic meaning</h3>
+        <p>
+          The any type indicates that there are no restrictions and a variable
+          of this type can be assigned a value of any type.
+        </p>
+        <p>let x:any;</p>
+        <p>
+          x = 1; // Correct <br />x = 'foo'; // Correct <br />x = true; //
+          Correct <br />In the above example, the type of variable x is any, and
+          it can be assigned a value of any type.
+        </p>
+        <p>
+          Once the variable type is set to any, TypeScript will actually turn
+          off type checking for this variable. Even if there is an obvious type
+          error, as long as the syntax is correct, no error will be reported.
+        </p>
+        <p>let x:any = ‘hello’;</p>
+        <p>
+          x(1) // No error <br />x.foo = 100; // No error <br />In the above
+          example, the value of the variable x is a string, but when calling it
+          as a function or reading any property as an object, TypeScript will
+          not report an error when compiling. The reason is that the type of x
+          is any, and TypeScript does not perform type checking on it.
+        </p>
+        <p>
+          For this reason, you should try to avoid using the any type, otherwise
+          it defeats the purpose of using TypeScript.
+        </p>
+        <p>
+          In actual development, the any type is mainly applicable to the
+          following two occasions.
+        </p>
+        <p>
+          (1) If you need to disable type checking for certain variables for
+          special reasons, you can set the type of the variable to any.
+        </p>
+        <p>
+          (2) To adapt to old JavaScript projects and quickly migrate the code
+          to TypeScript, you can set the variable type to any. Some old large
+          JavaScript projects, especially other people's code, are difficult to
+          adapt the correct type for each line. In this case, if you add any to
+          those variables with complex types, TypeScript will not report errors
+          when compiling.
+        </p>
+        <p>
+          In short, TypeScript believes that as long as developers use the any
+          type, it means that the developers want to handle the code themselves,
+          so there are no restrictions on the any type and it can be used in any
+          way.
+        </p>
+        <p>
+          From the perspective of set theory, the any type can be seen as the
+          complete set of all other types, including all possible types.
+          TypeScript calls this type the "top type", meaning that it covers all
+          the lower levels.
+        </p>
+        <h3><a name="t14"></a><a id="32__229"></a>3.2 Pollution Problem</h3>
+        <p>
+          In addition to turning off type checking, the any type can cause a big
+          problem, which is that it can "pollute" other variables. It can be
+          assigned to variables of any other type (because there is no type
+          checking), causing errors in other variables.
+        </p>
+        <p>
+          let x:any = ‘hello’;<br />
+          let y:number;
+        </p>
+        <p>y = x; // No error</p>
+        <p>
+          y * 123 // No error <br />y.toFixed() // No error <br />In the above
+          example, the type of variable x is any, and the actual value is a
+          string. The type of variable y is number, which means it is a numeric
+          variable, but it is assigned to x, and no error is reported. Then,
+          variable y continues to perform various numerical operations, and
+          TypeScript cannot detect any errors, so the problem is left to be
+          exposed at runtime.
+        </p>
+        <p>
+          Polluting other variables of the correct type and leaving errors until
+          runtime is another major reason why the any type should not be used.
+        </p>
+        <h3><a name="t15"></a><a id="33_unknown__247"></a>3.3 unknown type</h3>
+        <p>
+          In order to solve the problem of any type "polluting" other variables,
+          TypeScript 3.0 introduced the unknown type. It has the same meaning as
+          any, indicating that the type is uncertain and may be any type, but
+          its use has some restrictions and is not as free as any. It can be
+          regarded as a strict version of any.
+        </p>
+        <p>
+          Unknown is similar to any in that values
+          &ZeroWidthSpace;&ZeroWidthSpace;of all types can be assigned to the
+          unknown type.
+        </p>
+        <p>let x:unknown;</p>
+        <p>
+          x = true; // Correct <br />x = 42; // Correct <br />x = 'Hello World';
+          // Correct <br />In the above example, the type of variable x is
+          unknown and can be assigned values &ZeroWidthSpace;&ZeroWidthSpace;of
+          various types. This is consistent with the behavior of any.
+        </p>
+        <p>
+          The unknown type is different from the any type in that it cannot be
+          used directly. There are several main limitations.
+        </p>
+        <p>
+          First, a variable of unknown type cannot be directly assigned to
+          variables of other types (except any type and unknown type).
+        </p>
+        <p>let v:unknown = 123;</p>
+        <p>
+          let v1:boolean = v; // report an error <br />let v2:number = v; //
+          report an error <br />In the above example, the variable v is of
+          unknown type, and an error will be reported if it is assigned to a
+          variable of any or unknown type. This avoids the pollution problem and
+          overcomes a major disadvantage of the any type.
+        </p>
+        <p>
+          Secondly, you cannot directly call methods and properties of unknown
+          type variables.
+        </p>
+        <p>let v1:unknown = { foo: 123 }; <br />v1.foo // error</p>
+        <p>let v2:unknown = 'hello'; <br />v2.trim() // error</p>
+        <p>
+          let v3:unknown = (n = 0) =&gt; n + 1; <br />v3() // Error <br />In the
+          above example, directly calling the properties and methods of unknown
+          type variables, or directly executing them as functions, will result
+          in an error.
+        </p>
+        <p>
+          Again, the operations that can be performed on unknown type variables
+          are limited. They are only comparison operations (operators ==, =, !=,
+          !, ||, &amp;&amp;, ?), negation operations (operator !), typeof
+          operators, and instanceof operators. Other operations will result in
+          errors.
+        </p>
+        <p>let a:unknown = 1;</p>
+        <p>
+          a + 1 // Error <br />a === 1 // Correct <br />In the above example,
+          adding the unknown type variable a will result in an error, because
+          this is not allowed. However, comparison operations are allowed.
+        </p>
+        <p>So, how can we use unknown type variables?</p>
+        <p>
+          The answer is that unknown type variables can only be used after "type
+          narrowing". The so-called "type narrowing" is to narrow the type range
+          of unknown variables to ensure that there will be no errors.
+        </p>
+        <p>let a:unknown = 1;</p>
+        <p>
+          if (typeof a === 'number') { <br />let r = a + 10; // Correct <br />}
+          <br />In the above example, after the typeof operation, the unknown
+          type variable a can be determined to be of type number, and can be
+          used for addition operations. This is "type narrowing", which is
+          narrowing an uncertain type to a more specific type.
+        </p>
+        <p>Here is another example.</p>
+        <p>let s:unknown = ‘hello’;</p>
+        <p>
+          if (typeof s === 'string') { <br />s.length; // Correct <br />}
+          <br />In the above example, the length property of the variable s can
+          be called only after determining that the type of the variable s is a
+          string.
+        </p>
+        <p>
+          The purpose of this design is to allow the use of unknown variables
+          only when their actual type is clear, to prevent them from being
+          abused and "polluting" other variables like any. No error will be
+          reported if the type is narrowed down before use.
+        </p>
+        <p>
+          In short, unknown can be considered as a safer any. Generally
+          speaking, wherever any type is required, unknown type should be given
+          priority.
+        </p>
+        <p>
+          In set theory, unknown can also be regarded as the set of all other
+          types (except any), so it, like any, is also a top-level type of
+          TypeScript.
+        </p>
+        <h3><a name="t16"></a><a id="34_never__316"></a>3.4 The never type</h3>
+        <p>
+          In order to maintain the correspondence with set theory and the
+          integrity of type operations, TypeScript also introduces the concept
+          of "empty type", that is, the type is empty and does not contain any
+          value.
+        </p>
+        <p>
+          Since there is no value that belongs to the "empty type", the type is
+          called never, that is, it is impossible to have such a value.
+        </p>
+        <p>let x:never;</p>
+        <p>
+          In the above example, the type of variable x is never, so it is
+          impossible to assign any value to it, otherwise an error will be
+          reported.
+        </p>
+        <p>
+          The usage scenario of never type is mainly in some type operations to
+          ensure the integrity of type operations. In addition, for functions
+          that cannot return values, the return value type can be written as
+          never.
+        </p>
+        <p>
+          If a variable may have multiple types (i.e., union types), it is
+          usually necessary to use branches to handle each type. In this case,
+          after handling all possible types, the remaining cases belong to the
+          never type.
+        </p>
+        <p>
+          function fn(x:string|number) {<br />
+          if (typeof x === ‘string’) {<br />
+          // …<br />
+          } else if (typeof x === ‘number’) {<br />
+          // …<br />
+          } else {<br />
+          x; // never 类型<br />
+          }<br />
+          }
+        </p>
+        <p>
+          In the above example, the parameter variable x may be a string or a
+          number. After judging these two cases, in the last else branch, x is
+          of type never.
+        </p>
+        <p>
+          An important feature of the never type is that it can be assigned to
+          any other type.
+        </p>
+        <p>
+          function f():never {<br />
+          throw new Error(‘Error’);<br />
+          }
+        </p>
+        <p>
+          let v1:number = f(); // No error <br />let v2:string = f(); // No
+          error <br />let v3:boolean = f(); // No error
+        </p>
+        <p>
+          In the above example, function f() throws an error, so the return
+          value type can be written as never, which means it is impossible to
+          return any value. Various other types of variables can be assigned the
+          result of f() (never type).
+        </p>
+        <p>
+          Why can the never type be assigned to any other type? This is also
+          related to set theory. The empty set is a subset of any set.
+          TypeScript stipulates that any type contains the never type.
+          Therefore, the never type is shared by any other type. TypeScript
+          calls this situation the "bottom type".
+        </p>
+        <p>
+          In summary, TypeScript has two "top-level types" (any and unknown),
+          but only one "bottom-level type" is never.
+        </p>
+      </div>
     </div>
   </article>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const isZh = window.location.href.includes("zh/");
+</script>

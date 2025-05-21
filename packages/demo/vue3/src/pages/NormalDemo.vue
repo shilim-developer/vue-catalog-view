@@ -10,6 +10,7 @@ const articleRef = ref<HTMLElement | VueInstance | undefined>(undefined);
 <template>
   <article-content ref="articleRef" class="article"></article-content>
   <catalog-view
+    key="cee"
     class="catalog"
     type="point"
     :content-container="articleRef"

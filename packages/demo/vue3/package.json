@@ -9,5 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "vue3-catalog-view": "1.0.6"
   }
 }

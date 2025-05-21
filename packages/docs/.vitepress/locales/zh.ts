@@ -10,11 +10,6 @@ const config: LocaleSpecificConfig<DefaultTheme.Config> & {
   description: "根据文章生成目录视图",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: "Home", link: "/zh" },
-      // { text: 'Examples', link: '/markdown-examples' },
-    ],
-
     sidebar: [
       {
         text: "开始",
@@ -28,7 +23,7 @@ const config: LocaleSpecificConfig<DefaultTheme.Config> & {
         items: [
           { text: "基础使用", link: "/zh/usage/basic" },
           { text: "主题", link: "/zh/usage/theme" },
-          { text: "自定义", link: "/zh/usage/custom" },
+          { text: "自定义", link: "/zh/usage/customize" },
         ],
       },
     ],
@@ -36,6 +31,11 @@ const config: LocaleSpecificConfig<DefaultTheme.Config> & {
     socialLinks: [
       { icon: "github", link: "https://github.com/vuejs/vitepress" },
     ],
+
+    docFooter: {
+      prev: "上一篇",
+      next: "下一篇",
+    },
   },
 };
 export default config;
