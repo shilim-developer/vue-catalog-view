@@ -3,7 +3,6 @@ import { useData } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import { nextTick, provide } from "vue";
 import { useRoute } from "vitepress";
-import FrameDefaultLayout from "./FrameDefaultLayout.vue";
 
 const { isDark } = useData();
 function enableTransitions() {
@@ -46,8 +45,7 @@ const route = useRoute();
 </script>
 
 <template>
-  <FrameDefaultLayout v-if="route.path.startsWith('/frames/default')" />
-  <DefaultTheme.Layout v-else />
+  <DefaultTheme.Layout />
 </template>
 
 <style>

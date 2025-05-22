@@ -9,7 +9,7 @@ export default mergeConfig(
       browser: {
         provider: "playwright",
         enabled: true,
-        // headless: true,
+        headless: true,
         instances: [{ browser: "chromium" }],
         viewport: {
           width: 1080,

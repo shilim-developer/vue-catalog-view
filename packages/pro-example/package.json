@@ -1,0 +1,13 @@
+{
+  "name": "@vue3-catalog-view/pro-example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build"
+  },
+  "dependencies": {
+    "vue3-catalog-view": "1.0.7"
+  }
+}

@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "vue3-catalog-view"
-  text: "catalog view auto product for vue3"
+  text: "A Vue3 component that generates directory navigation based on your article"
   actions:
     - theme: brand
       text: Get Started

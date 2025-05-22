@@ -22,7 +22,7 @@ export const useCatalog = (
       ? (props.scrollContainer as VueInstance).$el
       : (props.scrollContainer as HTMLElement)
   );
-  const { y } = useScroll(scrollContainer, {
+  const { y, arrivedState } = useScroll(scrollContainer, {
     throttle: 100,
   });
   const { width: windowWidth } = useWindowSize();
@@ -86,8 +86,12 @@ export const useCatalog = (
     for (let index = 0; index < titles.value.length; index++) {
       const offsetTop = titles.value[index].offsetTop;
       const top = offsetTop - scrollTop - props.topDistance;
-      // console.log("top:", top, index);
-      if (top > 0 && index - 1 >= 0) {
+      // console.log("top:", top, arrivedState.bottom, index);
+      if (arrivedState.bottom) {
+        currentIndex.value = titles.value.length - 1;
+        updateActiveClass();
+        break;
+      } else if (top > 0 && index - 1 >= 0) {
         currentIndex.value = index - 1;
         updateActiveClass();
         break;

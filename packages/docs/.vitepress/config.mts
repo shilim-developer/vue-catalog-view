@@ -1,15 +1,9 @@
 import { join, resolve } from "path";
-import { defineConfig } from "vitepress";
+import { defineConfig, postcssIsolateStyles } from "vitepress";
 import enConfig from "./locales/en";
 import zhConfig from "./locales/zh";
 import { vitepressDemoPlugin } from "vitepress-demo-plugin";
 import vueJsx from "@vitejs/plugin-vue-jsx";
-import { whyframeVue } from "@whyframe/vue";
-import { whyframe } from "@whyframe/core";
-import { postcssIsolateStyles } from "vitepress";
-console.log(
-  "--------------------" + join(__dirname, "../../vue3-catalog-view/src")
-);
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -51,12 +45,6 @@ export default defineConfig({
     },
     plugins: [
       vueJsx() as any,
-      whyframe({
-        defaultSrc: "/frames/default",
-      }),
-      whyframeVue({
-        include: /\.(?:vue|md)$/, // also scan in markdown files
-      }),
       postcssIsolateStyles({
         includeFiles: [/vp-doc\.css/, /base\.css/], // defaults to /base\.css/
       }),

@@ -1,7 +1,7 @@
 {
   "name": "vue3-catalog-view",
-  "version": "1.0.6",
-  "description": "A Vue3 Library, easy to open modal and drawer",
+  "version": "1.0.8",
+  "description": "A Vue3 component that automatically extracts directories from articles based on tags",
   "files": [
     "lib",
     "LICENSE",

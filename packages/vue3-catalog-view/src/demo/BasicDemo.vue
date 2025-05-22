@@ -6,12 +6,12 @@ import { VueInstance } from "@vueuse/core";
 
 const articleRef = ref<HTMLElement | VueInstance | undefined>(undefined);
 const articleContainerRef = ref<HTMLElement | undefined>(undefined);
-console.log(window.location.href);
 </script>
 
 <template>
   <div class="wrapper">
     <div class="article-content" ref="articleContainerRef">
+      <h1>基础用法2323</h1>
       <article-content ref="articleRef" class="article"></article-content>
     </div>
     <catalog-view

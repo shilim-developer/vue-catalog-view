@@ -10,9 +10,7 @@ const articleRef = ref<HTMLElement | VueInstance | undefined>(undefined);
 <template>
   <article-content ref="articleRef" class="article"></article-content>
   <catalog-view
-    key="cee"
     class="catalog"
-    type="point"
     :content-container="articleRef"
     :selector="['h1', 'h2', 'h3', 'h4']"
     :use-anchor="false"

@@ -1,366 +1,368 @@
 import "./style.css";
-import { unref as N, onMounted as U, nextTick as Z, getCurrentScope as oe, onScopeDispose as re, isRef as le, getCurrentInstance as B, ref as _, computed as H, reactive as Q, watch as R, watchEffect as se, defineComponent as ie, useAttrs as ce, createElementBlock as D, openBlock as I, normalizeClass as V, createCommentVNode as ae, createElementVNode as X, Fragment as ue, renderList as fe, renderSlot as de, mergeProps as ve, normalizeStyle as pe, toDisplayString as J } from "vue";
+import { unref as N, onMounted as U, nextTick as Z, getCurrentScope as oe, onScopeDispose as re, isRef as le, getCurrentInstance as B, ref as _, computed as x, reactive as Q, watch as H, watchEffect as ie, defineComponent as se, createElementBlock as D, openBlock as I, normalizeClass as V, createCommentVNode as ae, createElementVNode as X, Fragment as ce, renderList as ue, renderSlot as fe, mergeProps as de, normalizeStyle as ve, toDisplayString as J } from "vue";
 function z(e) {
   return oe() ? (re(e), !0) : !1;
 }
-function T(e) {
+function S(e) {
   return typeof e == "function" ? e() : N(e);
 }
-const me = typeof window < "u" && typeof document < "u";
+const pe = typeof window < "u" && typeof document < "u";
 typeof WorkerGlobalScope < "u" && globalThis instanceof WorkerGlobalScope;
-const he = (e) => e != null, ye = Object.prototype.toString, ge = (e) => ye.call(e) === "[object Object]", W = () => {
+const me = (e) => e != null, he = Object.prototype.toString, ye = (e) => he.call(e) === "[object Object]", W = () => {
 };
-function ee(e, n) {
-  function t(...o) {
-    return new Promise((r, s) => {
-      Promise.resolve(e(() => n.apply(this, o), { fn: n, thisArg: this, args: o })).then(r).catch(s);
+function ee(e, t) {
+  function n(...o) {
+    return new Promise((r, l) => {
+      Promise.resolve(e(() => t.apply(this, o), { fn: t, thisArg: this, args: o })).then(r).catch(l);
     });
   }
-  return t;
+  return n;
 }
-function be(e, n = {}) {
-  let t, o, r = W;
-  const s = (c) => {
-    clearTimeout(c), r(), r = W;
+function ge(e, t = {}) {
+  let n, o, r = W;
+  const l = (s) => {
+    clearTimeout(s), r(), r = W;
   };
-  return (c) => {
-    const v = T(e), l = T(n.maxWait);
-    return t && s(t), v <= 0 || l !== void 0 && l <= 0 ? (o && (s(o), o = null), Promise.resolve(c())) : new Promise((p, u) => {
-      r = n.rejectOnCancel ? u : p, l && !o && (o = setTimeout(() => {
-        t && s(t), o = null, p(c());
-      }, l)), t = setTimeout(() => {
-        o && s(o), o = null, p(c());
-      }, v);
+  return (s) => {
+    const f = S(e), a = S(t.maxWait);
+    return n && l(n), f <= 0 || a !== void 0 && a <= 0 ? (o && (l(o), o = null), Promise.resolve(s())) : new Promise((c, v) => {
+      r = t.rejectOnCancel ? v : c, a && !o && (o = setTimeout(() => {
+        n && l(n), o = null, c(s());
+      }, a)), n = setTimeout(() => {
+        o && l(o), o = null, c(s());
+      }, f);
     });
   };
 }
-function we(...e) {
-  let n = 0, t, o = !0, r = W, s, a, c, v, l;
-  !le(e[0]) && typeof e[0] == "object" ? { delay: a, trailing: c = !0, leading: v = !0, rejectOnCancel: l = !1 } = e[0] : [a, c = !0, v = !0, l = !1] = e;
-  const p = () => {
-    t && (clearTimeout(t), t = void 0, r(), r = W);
+function be(...e) {
+  let t = 0, n, o = !0, r = W, l, u, s, f, a;
+  !le(e[0]) && typeof e[0] == "object" ? { delay: u, trailing: s = !0, leading: f = !0, rejectOnCancel: a = !1 } = e[0] : [u, s = !0, f = !0, a = !1] = e;
+  const c = () => {
+    n && (clearTimeout(n), n = void 0, r(), r = W);
   };
-  return (d) => {
-    const h = T(a), w = Date.now() - n, y = () => s = d();
-    return p(), h <= 0 ? (n = Date.now(), y()) : (w > h && (v || !o) ? (n = Date.now(), y()) : c && (s = new Promise((f, g) => {
-      r = l ? g : f, t = setTimeout(() => {
-        n = Date.now(), o = !0, f(y()), p();
-      }, Math.max(0, h - w));
-    })), !v && !t && (t = setTimeout(() => o = !0, h)), o = !1, s);
+  return (m) => {
+    const y = S(u), E = Date.now() - t, O = () => l = m();
+    return c(), y <= 0 ? (t = Date.now(), O()) : (E > y && (f || !o) ? (t = Date.now(), O()) : s && (l = new Promise((w, p) => {
+      r = a ? p : w, n = setTimeout(() => {
+        t = Date.now(), o = !0, w(O()), c();
+      }, Math.max(0, y - E));
+    })), !f && !n && (n = setTimeout(() => o = !0, y)), o = !1, l);
   };
 }
-function Te(e) {
+function we(e) {
   return B();
 }
-function Ee(e, n = 200, t = {}) {
+function Te(e, t = 200, n = {}) {
   return ee(
-    be(n, t),
+    ge(t, n),
     e
   );
 }
-function Se(e, n = 200, t = !1, o = !0, r = !1) {
+function Se(e, t = 200, n = !1, o = !0, r = !1) {
   return ee(
-    we(n, t, o, r),
+    be(t, n, o, r),
     e
   );
 }
-function te(e, n = !0, t) {
-  Te() ? U(e, t) : n ? e() : Z(e);
+function te(e, t = !0, n) {
+  we() ? U(e, n) : t ? e() : Z(e);
 }
-const x = me ? window : void 0;
+const R = pe ? window : void 0;
 function Y(e) {
-  var n;
-  const t = T(e);
-  return (n = t == null ? void 0 : t.$el) != null ? n : t;
+  var t;
+  const n = S(e);
+  return (t = n == null ? void 0 : n.$el) != null ? t : n;
 }
 function F(...e) {
-  let n, t, o, r;
-  if (typeof e[0] == "string" || Array.isArray(e[0]) ? ([t, o, r] = e, n = x) : [n, t, o, r] = e, !n)
+  let t, n, o, r;
+  if (typeof e[0] == "string" || Array.isArray(e[0]) ? ([n, o, r] = e, t = R) : [t, n, o, r] = e, !t)
     return W;
-  Array.isArray(t) || (t = [t]), Array.isArray(o) || (o = [o]);
-  const s = [], a = () => {
-    s.forEach((p) => p()), s.length = 0;
-  }, c = (p, u, d, h) => (p.addEventListener(u, d, h), () => p.removeEventListener(u, d, h)), v = R(
-    () => [Y(n), T(r)],
-    ([p, u]) => {
-      if (a(), !p)
+  Array.isArray(n) || (n = [n]), Array.isArray(o) || (o = [o]);
+  const l = [], u = () => {
+    l.forEach((c) => c()), l.length = 0;
+  }, s = (c, v, m, y) => (c.addEventListener(v, m, y), () => c.removeEventListener(v, m, y)), f = H(
+    () => [Y(t), S(r)],
+    ([c, v]) => {
+      if (u(), !c)
         return;
-      const d = ge(u) ? { ...u } : u;
-      s.push(
-        ...t.flatMap((h) => o.map((w) => c(p, h, w, d)))
+      const m = ye(v) ? { ...v } : v;
+      l.push(
+        ...n.flatMap((y) => o.map((E) => s(c, y, E, m)))
       );
     },
     { immediate: !0, flush: "post" }
-  ), l = () => {
-    v(), a();
+  ), a = () => {
+    f(), u();
   };
-  return z(l), l;
+  return z(a), a;
 }
-function _e() {
-  const e = _(!1), n = B();
-  return n && U(() => {
+function Ee() {
+  const e = _(!1), t = B();
+  return t && U(() => {
     e.value = !0;
-  }, n), e;
+  }, t), e;
 }
 function ne(e) {
-  const n = _e();
-  return H(() => (n.value, !!e()));
+  const t = Ee();
+  return x(() => (t.value, !!e()));
 }
-function Ce(e, n, t = {}) {
-  const { window: o = x, ...r } = t;
-  let s;
-  const a = ne(() => o && "MutationObserver" in o), c = () => {
-    s && (s.disconnect(), s = void 0);
-  }, v = H(() => {
-    const d = T(e), h = (Array.isArray(d) ? d : [d]).map(Y).filter(he);
-    return new Set(h);
-  }), l = R(
-    () => v.value,
-    (d) => {
-      c(), a.value && d.size && (s = new MutationObserver(n), d.forEach((h) => s.observe(h, r)));
+function _e(e, t, n = {}) {
+  const { window: o = R, ...r } = n;
+  let l;
+  const u = ne(() => o && "MutationObserver" in o), s = () => {
+    l && (l.disconnect(), l = void 0);
+  }, f = x(() => {
+    const m = S(e), y = (Array.isArray(m) ? m : [m]).map(Y).filter(me);
+    return new Set(y);
+  }), a = H(
+    () => f.value,
+    (m) => {
+      s(), u.value && m.size && (l = new MutationObserver(t), m.forEach((y) => l.observe(y, r)));
     },
     { immediate: !0, flush: "post" }
-  ), p = () => s == null ? void 0 : s.takeRecords(), u = () => {
-    l(), c();
+  ), c = () => l == null ? void 0 : l.takeRecords(), v = () => {
+    a(), s();
   };
-  return z(u), {
-    isSupported: a,
-    stop: u,
-    takeRecords: p
+  return z(v), {
+    isSupported: u,
+    stop: v,
+    takeRecords: c
   };
 }
-function Ae(e, n = {}) {
-  const { window: t = x } = n, o = ne(() => t && "matchMedia" in t && typeof t.matchMedia == "function");
+function Ce(e, t = {}) {
+  const { window: n = R } = t, o = ne(() => n && "matchMedia" in n && typeof n.matchMedia == "function");
   let r;
-  const s = _(!1), a = (l) => {
-    s.value = l.matches;
-  }, c = () => {
-    r && ("removeEventListener" in r ? r.removeEventListener("change", a) : r.removeListener(a));
-  }, v = se(() => {
-    o.value && (c(), r = t.matchMedia(T(e)), "addEventListener" in r ? r.addEventListener("change", a) : r.addListener(a), s.value = r.matches);
+  const l = _(!1), u = (a) => {
+    l.value = a.matches;
+  }, s = () => {
+    r && ("removeEventListener" in r ? r.removeEventListener("change", u) : r.removeListener(u));
+  }, f = ie(() => {
+    o.value && (s(), r = n.matchMedia(S(e)), "addEventListener" in r ? r.addEventListener("change", u) : r.addListener(u), l.value = r.matches);
   });
   return z(() => {
-    v(), c(), r = void 0;
-  }), s;
+    f(), s(), r = void 0;
+  }), l;
 }
 const K = 1;
-function Le(e, n = {}) {
+function Le(e, t = {}) {
   const {
-    throttle: t = 0,
+    throttle: n = 0,
     idle: o = 200,
     onStop: r = W,
-    onScroll: s = W,
-    offset: a = {
+    onScroll: l = W,
+    offset: u = {
       left: 0,
       right: 0,
       top: 0,
       bottom: 0
     },
-    eventListenerOptions: c = {
+    eventListenerOptions: s = {
       capture: !1,
       passive: !0
     },
-    behavior: v = "auto",
-    window: l = x,
-    onError: p = (i) => {
+    behavior: f = "auto",
+    window: a = R,
+    onError: c = (i) => {
       console.error(i);
     }
-  } = n, u = _(0), d = _(0), h = H({
+  } = t, v = _(0), m = _(0), y = x({
     get() {
-      return u.value;
+      return v.value;
     },
     set(i) {
-      y(i, void 0);
+      O(i, void 0);
     }
-  }), w = H({
+  }), E = x({
     get() {
-      return d.value;
+      return m.value;
     },
     set(i) {
-      y(void 0, i);
+      O(void 0, i);
     }
   });
-  function y(i, M) {
-    var S, $, P, O;
-    if (!l)
+  function O(i, b) {
+    var g, $, P, M;
+    if (!a)
       return;
-    const C = T(e);
-    if (!C)
+    const L = S(e);
+    if (!L)
       return;
-    (P = C instanceof Document ? l.document.body : C) == null || P.scrollTo({
-      top: (S = T(M)) != null ? S : w.value,
-      left: ($ = T(i)) != null ? $ : h.value,
-      behavior: T(v)
+    (P = L instanceof Document ? a.document.body : L) == null || P.scrollTo({
+      top: (g = S(b)) != null ? g : E.value,
+      left: ($ = S(i)) != null ? $ : y.value,
+      behavior: S(f)
     });
-    const j = ((O = C == null ? void 0 : C.document) == null ? void 0 : O.documentElement) || (C == null ? void 0 : C.documentElement) || C;
-    h != null && (u.value = j.scrollLeft), w != null && (d.value = j.scrollTop);
+    const j = ((M = L == null ? void 0 : L.document) == null ? void 0 : M.documentElement) || (L == null ? void 0 : L.documentElement) || L;
+    y != null && (v.value = j.scrollLeft), E != null && (m.value = j.scrollTop);
   }
-  const f = _(!1), g = Q({
+  const w = _(!1), p = Q({
     left: !0,
     right: !1,
     top: !0,
     bottom: !1
-  }), b = Q({
+  }), d = Q({
     left: !1,
     right: !1,
     top: !1,
     bottom: !1
-  }), m = (i) => {
-    f.value && (f.value = !1, b.left = !1, b.right = !1, b.top = !1, b.bottom = !1, r(i));
-  }, E = Ee(m, t + o), A = (i) => {
-    var M;
-    if (!l)
+  }), C = (i) => {
+    w.value && (w.value = !1, d.left = !1, d.right = !1, d.top = !1, d.bottom = !1, r(i));
+  }, A = Te(C, n + o), h = (i) => {
+    var b;
+    if (!a)
       return;
-    const S = ((M = i == null ? void 0 : i.document) == null ? void 0 : M.documentElement) || (i == null ? void 0 : i.documentElement) || Y(i), { display: $, flexDirection: P } = getComputedStyle(S), O = S.scrollLeft;
-    b.left = O < u.value, b.right = O > u.value;
-    const C = Math.abs(O) <= (a.left || 0), j = Math.abs(O) + S.clientWidth >= S.scrollWidth - (a.right || 0) - K;
-    $ === "flex" && P === "row-reverse" ? (g.left = j, g.right = C) : (g.left = C, g.right = j), u.value = O;
-    let k = S.scrollTop;
-    i === l.document && !k && (k = l.document.body.scrollTop), b.top = k < d.value, b.bottom = k > d.value;
-    const q = Math.abs(k) <= (a.top || 0), G = Math.abs(k) + S.clientHeight >= S.scrollHeight - (a.bottom || 0) - K;
-    $ === "flex" && P === "column-reverse" ? (g.top = G, g.bottom = q) : (g.top = q, g.bottom = G), d.value = k;
-  }, L = (i) => {
-    var M;
-    if (!l)
+    const g = ((b = i == null ? void 0 : i.document) == null ? void 0 : b.documentElement) || (i == null ? void 0 : i.documentElement) || Y(i), { display: $, flexDirection: P } = getComputedStyle(g), M = g.scrollLeft;
+    d.left = M < v.value, d.right = M > v.value;
+    const L = Math.abs(M) <= (u.left || 0), j = Math.abs(M) + g.clientWidth >= g.scrollWidth - (u.right || 0) - K;
+    $ === "flex" && P === "row-reverse" ? (p.left = j, p.right = L) : (p.left = L, p.right = j), v.value = M;
+    let k = g.scrollTop;
+    i === a.document && !k && (k = a.document.body.scrollTop), d.top = k < m.value, d.bottom = k > m.value;
+    const q = Math.abs(k) <= (u.top || 0), G = Math.abs(k) + g.clientHeight >= g.scrollHeight - (u.bottom || 0) - K;
+    $ === "flex" && P === "column-reverse" ? (p.top = G, p.bottom = q) : (p.top = q, p.bottom = G), m.value = k;
+  }, T = (i) => {
+    var b;
+    if (!a)
       return;
-    const S = (M = i.target.documentElement) != null ? M : i.target;
-    A(S), f.value = !0, E(i), s(i);
+    const g = (b = i.target.documentElement) != null ? b : i.target;
+    h(g), w.value = !0, A(i), l(i);
   };
   return F(
     e,
     "scroll",
-    t ? Se(L, t, !0, !1) : L,
-    c
+    n ? Se(T, n, !0, !1) : T,
+    s
   ), te(() => {
     try {
-      const i = T(e);
+      const i = S(e);
       if (!i)
         return;
-      A(i);
+      h(i);
     } catch (i) {
-      p(i);
+      c(i);
     }
   }), F(
     e,
     "scrollend",
-    m,
-    c
+    C,
+    s
   ), {
-    x: h,
-    y: w,
-    isScrolling: f,
-    arrivedState: g,
-    directions: b,
+    x: y,
+    y: E,
+    isScrolling: w,
+    arrivedState: p,
+    directions: d,
     measure() {
-      const i = T(e);
-      l && i && A(i);
+      const i = S(e);
+      a && i && h(i);
     }
   };
 }
-function Oe(e = {}) {
+function Ae(e = {}) {
   const {
-    window: n = x,
-    initialWidth: t = Number.POSITIVE_INFINITY,
+    window: t = R,
+    initialWidth: n = Number.POSITIVE_INFINITY,
     initialHeight: o = Number.POSITIVE_INFINITY,
     listenOrientation: r = !0,
-    includeScrollbar: s = !0,
-    type: a = "inner"
-  } = e, c = _(t), v = _(o), l = () => {
-    n && (a === "outer" ? (c.value = n.outerWidth, v.value = n.outerHeight) : s ? (c.value = n.innerWidth, v.value = n.innerHeight) : (c.value = n.document.documentElement.clientWidth, v.value = n.document.documentElement.clientHeight));
+    includeScrollbar: l = !0,
+    type: u = "inner"
+  } = e, s = _(n), f = _(o), a = () => {
+    t && (u === "outer" ? (s.value = t.outerWidth, f.value = t.outerHeight) : l ? (s.value = t.innerWidth, f.value = t.innerHeight) : (s.value = t.document.documentElement.clientWidth, f.value = t.document.documentElement.clientHeight));
   };
-  if (l(), te(l), F("resize", l, { passive: !0 }), r) {
-    const p = Ae("(orientation: portrait)");
-    R(p, () => l());
+  if (a(), te(a), F("resize", a, { passive: !0 }), r) {
+    const c = Ce("(orientation: portrait)");
+    H(c, () => a());
   }
-  return { width: c, height: v };
+  return { width: s, height: f };
 }
-const Me = (e, n) => new Promise((t) => {
+const Oe = (e, t) => new Promise((n) => {
   const o = () => {
-    e.removeEventListener("scrollend", o), t(!0);
+    e.removeEventListener("scrollend", o), n(!0);
   };
-  e.addEventListener("scrollend", o), e.scrollTo(n);
-}), ke = (e) => new Promise((n) => setTimeout(n, e)), We = (e, n) => {
-  const t = _([]), o = _(0), r = _(!1), s = _(), a = H(
+  e.addEventListener("scrollend", o), e.scrollTo(t);
+}), Me = (e) => new Promise((t) => setTimeout(t, e)), ke = (e, t = "") => {
+  const n = t && `-${t}-`, o = _([]), r = _(0), l = _(!1), u = _(), s = x(
     () => e.scrollContainer.$el ? e.scrollContainer.$el : e.scrollContainer
-  ), { y: c } = Le(a, {
+  ), { y: f, arrivedState: a } = Le(s, {
     throttle: 100
-  }), { width: v } = Oe(), l = _(document.createElement("div")), p = async () => {
-    await Z(), a.value.style && (a.value.style.position = "relative");
-    const y = e.selector.reduce(
-      (m, E, A) => (m[E] = A, m),
+  }), { width: c } = Ae(), v = _(document.createElement("div")), m = async () => {
+    await Z(), s.value.style && (s.value.style.position = "relative");
+    const p = e.selector.reduce(
+      (h, T, i) => (h[T] = i, h),
       {}
-    ), f = l.value.querySelectorAll(
+    ), d = v.value.querySelectorAll(
       e.selector.join(",")
-    ), g = Array.from(f).filter(
-      (m) => m instanceof HTMLElement && m.innerText.trim()
+    ), C = Array.from(d).filter(
+      (h) => h instanceof HTMLElement && h.innerText.trim()
     );
-    if (!g.length)
+    if (!C.length)
       return [];
-    const b = (m) => {
-      const E = m.tagName.toLowerCase(), A = Array.from(m.classList);
-      let L = 0;
-      for (const i of A)
-        if (Object.prototype.hasOwnProperty.call(y, `.${i}`)) {
-          L = y[`.${i}`] || 0;
+    const A = (h) => {
+      const T = h.tagName.toLowerCase(), i = Array.from(h.classList);
+      let b = 0;
+      for (const g of i)
+        if (Object.prototype.hasOwnProperty.call(p, `.${g}`)) {
+          b = p[`.${g}`] || 0;
           break;
         }
-      return Object.prototype.hasOwnProperty.call(y, E) && (L = y[E] || 0), L;
+      return Object.prototype.hasOwnProperty.call(p, T) && (b = p[T] || 0), b;
     };
-    return g.map((m, E) => (m.id || (m.id = `vcvTitle${n}-${E}`), {
-      title: m.innerText,
-      id: m.id,
-      catalogId: `vcvAnchor${n}-${E}`,
-      level: b(m),
-      offsetTop: m.offsetTop
+    return C.map((h, T) => (h.id || (h.id = `vcvTitle${n}${T}`), {
+      title: h.innerText,
+      id: h.id,
+      catalogId: `vcvAnchor${n}${T}`,
+      level: A(h),
+      offsetTop: h.offsetTop
     }));
-  }, u = (y) => {
-    if (!r.value)
-      for (let f = 0; f < t.value.length; f++) {
-        const b = t.value[f].offsetTop - y - e.topDistance;
-        if (console.log("top:", b, f), b > 0 && f - 1 >= 0) {
-          o.value = f - 1, d();
+  }, y = (p) => {
+    if (!l.value)
+      for (let d = 0; d < o.value.length; d++) {
+        const A = o.value[d].offsetTop - p - e.topDistance;
+        if (a.bottom) {
+          r.value = o.value.length - 1, E();
+          break;
+        } else if (A > 0 && d - 1 >= 0) {
+          r.value = d - 1, E();
           break;
         }
-        o.value = f;
+        r.value = d;
       }
-  }, d = () => {
-    var E, A, L;
-    const y = document.querySelector(
-      `#vcvAnchor${o.value}`
-    ), f = ((E = s.value) == null ? void 0 : E.clientHeight) || 0, g = y.offsetTop, b = ((A = s.value) == null ? void 0 : A.scrollTop) || 0, m = g - b;
-    (m > f / 2 || m < f / 2) && ((L = s.value) == null || L.scrollTo({
-      top: g - f / 2,
-      behavior: r.value ? "instant" : "smooth"
+  }, E = () => {
+    var T, i, b;
+    const p = document.querySelector(
+      `#vcvAnchor${n}${r.value}`
+    ), d = ((T = u.value) == null ? void 0 : T.clientHeight) || 0, C = p.offsetTop, A = ((i = u.value) == null ? void 0 : i.scrollTop) || 0, h = C - A;
+    (h > d / 2 || h < d / 2) && ((b = u.value) == null || b.scrollTo({
+      top: C - d / 2,
+      behavior: l.value ? "instant" : "smooth"
     }));
-  }, h = async (y, f) => {
-    if (r.value = !0, o.value = f, d(), e.useAnchor) {
-      r.value = !1;
+  }, O = async (p, d) => {
+    if (l.value = !0, r.value = d, E(), e.useAnchor) {
+      l.value = !1;
       return;
     }
-    await Me(a.value, {
-      top: y.offsetTop - e.topDistance,
+    await Oe(s.value, {
+      top: p.offsetTop - e.topDistance,
       behavior: "smooth"
-    }), await ke(100), r.value = !1;
+    }), await Me(100), l.value = !1;
   };
-  R(
-    () => c.value,
+  H(
+    () => f.value,
     () => {
-      u(c.value);
+      y(f.value);
     }
   );
   let w;
-  return R(
-    () => [e.contentContainer, e.isWatch, v.value],
-    async (y) => {
-      console.log("val:", y);
-      const [f, g] = y;
-      if (f) {
-        if (f.$el ? l.value = f.$el : l.value = f, g) {
+  return H(
+    () => [e.contentContainer, e.isWatch, c.value],
+    async (p) => {
+      const [d, C] = p;
+      if (d) {
+        if (d.$el ? v.value = d.$el : v.value = d, C) {
           w && w();
-          const { stop: b } = Ce(
-            l,
+          const { stop: A } = _e(
+            v,
             async () => {
-              t.value = await p();
+              o.value = await m();
             },
             {
               childList: !0,
@@ -368,23 +370,23 @@ const Me = (e, n) => new Promise((t) => {
               characterData: !0
             }
           );
-          w = b;
+          w = A;
         } else
           w && w();
-        t.value = await p(), console.log("titles.value:", t.value);
+        o.value = await m();
       }
     },
     {
       immediate: !0
     }
   ), {
-    titles: t,
-    currentIndex: o,
-    catalogRef: s,
-    handleAnchorClick: h
+    titles: o,
+    currentIndex: r,
+    catalogRef: u,
+    handleAnchorClick: O
   };
 };
-function De() {
+function We() {
   return {
     type: {
       type: String,
@@ -412,11 +414,11 @@ function De() {
     },
     useAnchor: {
       type: Boolean,
-      default: !0
+      default: !1
     },
     isWatch: {
       type: Boolean,
-      default: !1
+      default: !0
     },
     ellipsis: {
       type: Boolean,
@@ -424,62 +426,60 @@ function De() {
     }
   };
 }
-const Ie = {
+const De = {
   key: 0,
   class: "vcv-line"
-}, $e = ["id", "onClick"], Pe = ["href"], je = { key: 1 }, Ne = /* @__PURE__ */ ie({
+}, Ie = ["id", "onClick"], $e = ["href"], Pe = { key: 1 }, je = /* @__PURE__ */ se({
   __name: "CatalogView",
-  props: De(),
+  props: We(),
   setup(e) {
-    var c, v;
-    const n = e, t = ce();
-    console.log("props:", n, t.key);
-    const { titles: o, currentIndex: r, catalogRef: s, handleAnchorClick: a } = We(
-      n,
-      (v = (c = B()) == null ? void 0 : c.vnode) == null ? void 0 : v.key
+    var u, s;
+    const t = e, { titles: n, currentIndex: o, catalogRef: r, handleAnchorClick: l } = ke(
+      t,
+      ((s = (u = B()) == null ? void 0 : u.vnode) == null ? void 0 : s.key) || ""
     );
-    return (l, p) => (I(), D("div", {
-      class: V(["vcv-wrapper", l.type])
+    return (f, a) => (I(), D("div", {
+      class: V(["vcv-wrapper", f.type])
     }, [
-      l.type !== "default" ? (I(), D("div", Ie)) : ae("", !0),
+      f.type !== "default" ? (I(), D("div", De)) : ae("", !0),
       X("div", {
         class: "vcv-catalog-content",
         ref_key: "catalogRef",
-        ref: s
+        ref: r
       }, [
-        (I(!0), D(ue, null, fe(N(o), (u, d) => (I(), D("div", {
-          key: u.title,
-          id: `vcvAnchor${d}`,
-          onClick: (h) => N(a)(u, d),
-          class: V(["vcv-catalog-item-wrapper", N(r) === d ? "active" : ""])
+        (I(!0), D(ce, null, ue(N(n), (c, v) => (I(), D("div", {
+          key: c.title,
+          id: c.catalogId,
+          onClick: (m) => N(l)(c, v),
+          class: V(["vcv-catalog-item-wrapper", N(o) === v ? "active" : ""])
         }, [
-          de(l.$slots, "default", ve({ ref_for: !0 }, { active: N(r) === d, anchor: u }), () => [
+          fe(f.$slots, "default", de({ ref_for: !0 }, { active: N(o) === v, anchor: c }), () => [
             X("div", {
               class: V(["vcv-catalog-item", {
-                "text-ellipsis": l.ellipsis
+                "text-ellipsis": f.ellipsis
               }]),
-              style: pe({
-                paddingLeft: `${15 + (u.level - 1) * l.indent}px`,
+              style: ve({
+                paddingLeft: `${15 + (c.level - 1) * f.indent}px`,
                 paddingRight: "15px"
               })
             }, [
-              l.useAnchor ? (I(), D("a", {
+              f.useAnchor ? (I(), D("a", {
                 key: 0,
-                href: `#${u.id}`
-              }, J(u.title), 9, Pe)) : (I(), D("span", je, J(u.title), 1))
+                href: `#${c.id}`
+              }, J(c.title), 9, $e)) : (I(), D("span", Pe, J(c.title), 1))
             ], 6)
           ], !0)
-        ], 10, $e))), 128))
+        ], 10, Ie))), 128))
       ], 512)
     ], 2));
   }
-}), He = (e, n) => {
-  const t = e.__vccOpts || e;
-  for (const [o, r] of n)
-    t[o] = r;
-  return t;
-}, Ve = /* @__PURE__ */ He(Ne, [["__scopeId", "data-v-cc6f8f2d"]]);
+}), Ne = (e, t) => {
+  const n = e.__vccOpts || e;
+  for (const [o, r] of t)
+    n[o] = r;
+  return n;
+}, Re = /* @__PURE__ */ Ne(je, [["__scopeId", "data-v-74ebfd8f"]]);
 export {
-  Ve as CatalogView,
-  De as catalogViewProps
+  Re as CatalogView,
+  We as catalogViewProps
 };
