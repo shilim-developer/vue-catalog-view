@@ -1,6 +1,6 @@
 {
   "name": "vue3-catalog-view",
-  "version": "1.0.8",
+  "version": "1.0.0",
   "description": "A Vue3 component that automatically extracts directories from articles based on tags",
   "files": [
     "lib",
@@ -20,7 +20,7 @@
   "author": "shilim",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shilim-developer/vue-dialog-manager.git"
+    "url": "git+https://github.com/shilim-developer/vue3-catalog-view.git"
   },
   "license": "MIT",
   "peerDependencies": {
