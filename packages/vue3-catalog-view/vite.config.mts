@@ -3,6 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import path from "path";
 import dts from "vite-plugin-dts";
 const outputDir = path.resolve(__dirname, "./lib");
+import { name } from "./package.json";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,7 +11,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-      "vue3-catalog-view": path.resolve(__dirname, "src/index.ts"),
+      [name]: path.resolve(__dirname, "src/index.ts"),
     },
   },
   build: {
@@ -21,9 +22,9 @@ export default defineConfig({
           vue: "Vue",
         },
         intro: (chunk) => {
-          if (chunk.fileName === "vue3-catalog-view.umd.js") {
+          if (chunk.fileName === `${name}.umd.js`) {
             return `require("./style.css");`;
-          } else if (chunk.fileName === "vue3-catalog-view.es.js") {
+          } else if (chunk.fileName === `${name}.es.js`) {
             return `import "./style.css";`;
           }
           return "";
@@ -32,9 +33,9 @@ export default defineConfig({
     },
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "vue3-catalog-view",
+      name,
       formats: ["es", "umd"],
-      fileName: (format) => `vue3-catalog-view.${format}.js`,
+      fileName: (format) => `${name}.${format}.js`,
     },
     outDir: outputDir,
   },
